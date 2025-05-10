@@ -8,7 +8,7 @@
     "email": "robpol86@gmail.com",
     "url": "https://github.com/Robpol86/iina-plugin-poc"
   },
-  "entry": "src/index.js",
+  "entry": "src/index.cjs",
   "permissions": [
     "show-osd",
     "file-system",
