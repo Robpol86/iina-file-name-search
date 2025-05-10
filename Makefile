@@ -29,20 +29,20 @@ format:
 	npm run lint:fix
 
 .PHONY: test
-test: _HELP = Run unit tests
+test: _HELP = Run unit tests (SPECIFIC_TEST env var available)
 test:
-	@echo TODO Not Implemented
+	npm test
 
 ## Misc
 
 .PHONY: all
-all: _HELP = Run linters and unit tests and builds
-all: test lint build
+all: _HELP = Run linters and unit tests
+all: test lint
 
 .PHONY: clean
 clean: _HELP = Remove temporary files
 clean:
-	rm -rfv .output/ .wxt/ coverage/
+	rm -rfv coverage/
 
 .PHONY: distclean
 distclean: _HELP = Remove temporary files including node_modules
