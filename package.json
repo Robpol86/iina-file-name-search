@@ -13,14 +13,14 @@
     "url": "https://github.com/Robpol86/iina-plugin-poc/issues"
   },
   "scripts": {
-    "lint": "eslint --no-error-on-unmatched-pattern . --ext js --ext cjs",
+    "lint": "eslint --no-error-on-unmatched-pattern . --ext js --ext cjs --ext mjs",
     "lint:fix": "npm run lint -- --fix"
   },
   "devDependencies": {
-    "@eslint/js": "^9.25.1",
-    "eslint": "^9.25.1",
-    "eslint-config-prettier": "^10.1.2",
-    "eslint-plugin-prettier": "^5.2.6",
-    "globals": "^16.0.0"
+    "eslint": "^9.26.0",
+    "eslint-config-prettier": "^10.1.5",
+    "eslint-plugin-prettier": "^5.4.0",
+    "globals": "^16.1.0",
+    "prettier": "^3.5.3"
   }
 }
