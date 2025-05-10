@@ -1,16 +1,12 @@
+import { defineConfig } from "eslint/config";
+import eslintPluginPrettierRecommended from "eslint-plugin-prettier/recommended";
 import globals from "globals";
-import pluginJs from "@eslint/js";
-import pluginPrettier from "eslint-plugin-prettier/recommended";
+import js from "@eslint/js";
 
-/** @type {import("eslint").Linter.Config[]} */
-export default [
+export default defineConfig([
+    { languageOptions: { globals: { ...globals.node, iina: true } } },
+    { plugins: { js }, extends: ["js/recommended"] },
     {
-        languageOptions: {
-            globals: {
-                ...globals.node,
-                iina: true,
-            },
-        },
         rules: {
             "no-unused-vars": [
                 "error",
@@ -28,9 +24,5 @@ export default [
             "sort-imports": ["error", {}],
         },
     },
-    pluginJs.configs.recommended,
-    pluginPrettier,
-    {
-        files: ["**/*.spec.js", "**/*.test.js"],
-    },
-];
+    eslintPluginPrettierRecommended,
+]);
