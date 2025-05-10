@@ -1,0 +1,20 @@
+{
+  "name": "iina-poc",
+  "identifier": "com.robpol86.iina-poc",
+  "version": "1.0.0",
+  "description": "Proof of concept plugin",
+  "author": {
+    "name": "Robpol86",
+    "email": "robpol86@gmail.com",
+    "url": "https://github.com/Robpol86/iina-plugin-poc"
+  },
+  "entry": "src/index.js",
+  "permissions": [
+    "show-osd",
+    "file-system",
+    "network-request"
+  ],
+  "allowedDomains": ["*"],
+  "preferencesPage": "src/preferences.html",
+  "preferenceDefaults": {}
+}
