@@ -2,10 +2,9 @@
  * Main entrypoint.
  */
 
-const { console, core, event } = iina;
+iina.console.log("Outer");
 
-console.log("Hello, world!");
-
-event.on("mpv.file-loaded", () => {
-  core.osd("Starts playing");
+iina.event.on("mpv.file-loaded", () => {
+    iina.console.log("Inner");
+    iina.core.osd("Starts playing");
 });
