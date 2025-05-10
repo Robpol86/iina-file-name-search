@@ -1,0 +1,26 @@
+{
+  "name": "iina-plugin-poc",
+  "description": "Proof of concept plugin for the IINA video player",
+  "license": "BSD-2-Clause",
+  "author": "Robpol86",
+  "homepage": "https://github.com/Robpol86/iina-plugin-poc",
+  "repository": {
+    "type": "git",
+    "url": "https://github.com/Robpol86/iina-plugin-poc.git"
+  },
+  "bugs": {
+    "url": "https://github.com/Robpol86/iina-plugin-poc/issues"
+  },
+  "scripts": {
+    "lint": "eslint --no-error-on-unmatched-pattern . --ext js --ext cjs --ext mjs",
+    "lint:fix": "npm run lint -- --fix"
+  },
+  "devDependencies": {
+    "eslint": "^9.26.0",
+    "eslint-config-prettier": "^10.1.5",
+    "eslint-plugin-prettier": "^5.4.0",
+    "globals": "^16.1.0",
+    "iina-plugin-definition": "^0.99.3",
+    "prettier": "^3.5.3"
+  }
+}
