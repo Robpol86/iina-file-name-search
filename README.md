@@ -1,6 +1,8 @@
 # iina-plugin-poc
 
-Usage:
+Proof of concept plugin for the IINA video player
+
+## Usage
 
 ```bash
 /Applications/IINA.app/Contents/MacOS/iina-plugin link .
