@@ -3,30 +3,24 @@
  */
 
 /**
- * Get the basename and dirname of a path.
+ * Get the basename of a file URL.
  *
- * @param {string} filePath - Input file path.
- * @param {boolean} dirnameKeepSlash - Keep the trailing slash in the dirname.
+ * @param {string} url - URL to a file.
  *
- * @returns {[string, string]} - The basename and the dirname.
+ * @returns {string} - The basename.
  */
-function getBasename(filePath, dirnameKeepSlash = false) {
-    if (!filePath) return ["", dirnameKeepSlash ? "./" : "."];
-    const lastDelimIdx = filePath.lastIndexOf("/");
+function getBasename(url) {
+    if (!url) return "";
+    const lastDelimIdx = url.lastIndexOf("/");
 
     // Handle filename-only.
-    if (lastDelimIdx < 0) return [filePath, dirnameKeepSlash ? "./" : "."];
+    if (lastDelimIdx < 0) return url;
 
-    // Handle file in root.
-    if (lastDelimIdx === 0) return [filePath.slice(1), "/"];
-
-    const basename = filePath.slice(lastDelimIdx + 1);
-    const dirname = filePath.slice(0, lastDelimIdx + (dirnameKeepSlash ? 1 : 0));
-    return [basename, dirname];
+    const basename = url.slice(lastDelimIdx + 1);
+    return basename;
 }
 
 // Export.
-if (typeof exports === "object" && typeof module !== "undefined") {
-    // For tests.
-    module.exports = { getBasename };
-}
+module.exports = {
+    getBasename,
+};
