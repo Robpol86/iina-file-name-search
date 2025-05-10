@@ -2,9 +2,15 @@
  * Main entrypoint.
  */
 
-iina.console.log("Outer");
-
-iina.event.on("mpv.file-loaded", () => {
-    iina.console.log("Inner");
+/**
+ * Event handler for iina.file-loaded.
+ *
+ * @param {string} url - URL file path to the loaded file.
+ */
+function onFileLoaded(url) {
+    iina.console.log("Url", url);
     iina.core.osd("Starts playing");
-});
+}
+
+// Event handlers.
+iina.event.on("iina.file-loaded", onFileLoaded);
