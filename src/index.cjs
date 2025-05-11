@@ -35,10 +35,17 @@ function onFileLoaded(currentFile) {
         } catch (exc) {
             iina.console.error(`PLUGIN ERROR: invalid regex: ${exc.message}`);
             iina.core.osd("PLUGIN ERROR: invalid regex");
+            return;
         }
         const match = videoName.match(regex);
-        if (match) videoName = match[0][0];
+        if (!match) {
+            iina.console.debug("regex did not match, noop");
+            return;
+        }
+        videoName = match[0][0];
     }
+
+    iina.utils.open(prefsUrl.replace("%s", videoName));
 }
 
 // Event handlers.
