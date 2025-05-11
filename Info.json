@@ -6,6 +6,11 @@
   "identifier": "com.robpol86.iina-file-name-search",
   "name": "File Name Search",
   "permissions": ["show-osd", "file-system", "network-request"],
+  "preferenceDefaults": {
+    "auto_search": false,
+    "regex": "",
+    "url": ""
+  },
   "preferencesPage": "src/preferences.html",
   "version": "1.0.0"
 }

@@ -10,9 +10,35 @@ const { getFileNameSansExt } = require("./lib.cjs");
  * @param {string} currentFile - Currently loaded media file path as a URL.
  */
 function onFileLoaded(currentFile) {
-    iina.console.log("Url", currentFile);
-    iina.console.log("Name", getFileNameSansExt(currentFile));
-    iina.core.osd("Starts playing");
+    if (iina.preferences.get("auto_search") !== true) {
+        iina.console.debug("auto_search not enabled, noop");
+        return;
+    }
+
+    const prefsUrl = iina.preferences.get("url");
+    if (!prefsUrl) {
+        iina.console.error("PLUGIN ERROR: No URL specified");
+        iina.core.osd("PLUGIN ERROR: No URL specified");
+        return;
+    } else if (!prefsUrl.includes("%s")) {
+        iina.console.error("PLUGIN ERROR: %s is missing from url");
+        iina.core.osd("PLUGIN ERROR: %s is missing from url");
+        return;
+    }
+
+    let videoName = getFileNameSansExt(currentFile);
+    const prefsRegex = iina.preferences.get("regex");
+    if (prefsRegex) {
+        let regex;
+        try {
+            regex = new RegExp(prefsRegex);
+        } catch (exc) {
+            iina.console.error(`PLUGIN ERROR: invalid regex: ${exc.message}`);
+            iina.core.osd("PLUGIN ERROR: invalid regex");
+        }
+        const match = videoName.match(regex);
+        if (match) videoName = match[0][0];
+    }
 }
 
 // Event handlers.
