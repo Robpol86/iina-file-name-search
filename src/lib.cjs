@@ -7,7 +7,7 @@
  *
  * @param {string} url - URL to a file.
  *
- * @returns {string} - The file name (e.g. "file:///tmp/video.mp4" -> "video").
+ * @returns {string} - The file name without the file extension.
  */
 function getFileNameSansExt(url) {
     if (!url) return "";
