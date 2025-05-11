@@ -2,16 +2,16 @@
  * Main entrypoint.
  */
 
-const { getBasename } = require("./lib.cjs");
+const { getFileNameSansExt } = require("./lib.cjs");
 
 /**
  * Event handler for iina.file-loaded.
  *
- * @param {string} url - URL file path to the loaded file.
+ * @param {string} currentFile - Currently loaded media file path as a URL.
  */
-function onFileLoaded(url) {
-    iina.console.log("Url", url);
-    iina.console.log("basename", getBasename(url));
+function onFileLoaded(currentFile) {
+    iina.console.log("Url", currentFile);
+    iina.console.log("Name", getFileNameSansExt(currentFile));
     iina.core.osd("Starts playing");
 }
 
