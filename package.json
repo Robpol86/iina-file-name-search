@@ -1,6 +1,5 @@
 {
     "name": "iina-plugin-poc",
-    "version": "1.0.0",
     "description": "Proof of concept plugin for the IINA video player",
     "homepage": "https://github.com/Robpol86/iina-plugin-poc",
     "bugs": {
