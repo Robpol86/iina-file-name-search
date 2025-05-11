@@ -1,16 +1,18 @@
 {
-  "allowedDomains": ["*"],
   "author": { "email": "robpol86@gmail.com", "name": "Robpol86" },
   "description": "Search file names on the internet",
   "entry": "src/index.cjs",
+  "ghRepo": "Robpol86/iina-file-name-search",
+  "ghVersion": 1,
   "identifier": "com.robpol86.iina-file-name-search",
   "name": "File Name Search",
-  "permissions": ["show-osd", "file-system", "network-request"],
+  "permissions": ["show-osd"],
   "preferenceDefaults": {
     "auto_search": false,
     "regex": "",
     "url": ""
   },
   "preferencesPage": "src/preferences.html",
+  "sidebarTab": { "name": "File Name Search" },
   "version": "1.0.0"
 }
