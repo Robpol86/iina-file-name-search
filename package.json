@@ -1,13 +1,13 @@
 {
-    "name": "iina-plugin-poc",
-    "description": "Proof of concept plugin for the IINA video player",
-    "homepage": "https://github.com/Robpol86/iina-plugin-poc",
+    "name": "iina-file-name-search",
+    "description": "Search file names on the internet",
+    "homepage": "https://github.com/Robpol86/iina-file-name-search",
     "bugs": {
-        "url": "https://github.com/Robpol86/iina-plugin-poc/issues"
+        "url": "https://github.com/Robpol86/iina-file-name-search/issues"
     },
     "repository": {
         "type": "git",
-        "url": "https://github.com/Robpol86/iina-plugin-poc.git"
+        "url": "https://github.com/Robpol86/iina-file-name-search.git"
     },
     "license": "BSD-2-Clause",
     "author": "Robpol86",
