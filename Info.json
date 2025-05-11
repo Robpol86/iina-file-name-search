@@ -6,7 +6,10 @@
   "ghVersion": 1,
   "identifier": "com.robpol86.iina-file-name-search",
   "name": "File Name Search",
-  "permissions": ["show-osd"],
+  "permissions": [
+    "show-osd",
+    "video-overlay"
+  ],
   "preferenceDefaults": {
     "auto_search": false,
     "regex": "",

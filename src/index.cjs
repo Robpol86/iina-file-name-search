@@ -4,14 +4,29 @@
 
 const { getFileNameSansExt } = require("./lib.cjs");
 
+// let OVERLAY_LOADED = false; // TODO await this
+
+function onWindowLoaded() {
+    iina.console.log("onWindowLoaded");
+    iina.overlay.loadFile("src/overlay.html");
+}
+
+function onOverlayLoaded() {
+    iina.console.log("onOverlayLoaded");
+    iina.overlay.show();
+    // OVERLAY_LOADED = true;
+}
+
 /**
  * Event handler for iina.file-loaded.
  *
  * @param {string} currentFile - Currently loaded media file path as a URL.
  */
-function onFileLoaded(currentFile) {
+async function onFileLoaded(currentFile) {
+    iina.console.log("onFileLoaded");
+
     if (iina.preferences.get("auto_search") !== true) {
-        iina.console.debug("auto_search not enabled, noop");
+        iina.console.log("auto_search not enabled, noop");
         return;
     }
 
@@ -39,14 +54,16 @@ function onFileLoaded(currentFile) {
         }
         const match = videoName.match(regex);
         if (!match) {
-            iina.console.debug("regex did not match, noop");
+            iina.console.log("regex did not match, noop");
             return;
         }
         videoName = match[0];
     }
 
-    iina.utils.open(prefsUrl.replace("%s", videoName));
+    // iina.utils.open(prefsUrl.replace("%s", videoName));
 }
 
 // Event handlers.
+iina.event.on("iina.plugin-overlay-loaded", onOverlayLoaded);
+iina.event.on("iina.window-loaded", onWindowLoaded);
 iina.event.on("iina.file-loaded", onFileLoaded);
