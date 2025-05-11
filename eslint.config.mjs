@@ -1,4 +1,5 @@
 import { defineConfig } from "eslint/config";
+import eslintPluginPackageJson from "eslint-plugin-package-json";
 import eslintPluginPrettierRecommended from "eslint-plugin-prettier/recommended";
 import globals from "globals";
 import js from "@eslint/js";
@@ -25,4 +26,5 @@ export default defineConfig([
         },
     },
     eslintPluginPrettierRecommended,
+    eslintPluginPackageJson.configs.recommended,
 ]);

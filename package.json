@@ -1,29 +1,31 @@
 {
-  "name": "iina-plugin-poc",
-  "description": "Proof of concept plugin for the IINA video player",
-  "license": "BSD-2-Clause",
-  "author": "Robpol86",
-  "homepage": "https://github.com/Robpol86/iina-plugin-poc",
-  "repository": {
-    "type": "git",
-    "url": "https://github.com/Robpol86/iina-plugin-poc.git"
-  },
-  "bugs": {
-    "url": "https://github.com/Robpol86/iina-plugin-poc/issues"
-  },
-  "type": "module",
-  "scripts": {
-    "lint": "eslint --no-error-on-unmatched-pattern . --ext js --ext cjs --ext mjs",
-    "lint:fix": "npm run lint -- --fix",
-    "test": "NODE_OPTIONS='--experimental-vm-modules' jest --coverage --verbose --silent ${SPECIFIC_TEST:+--silent=false -t ${SPECIFIC_TEST// /.}}"
-  },
-  "devDependencies": {
-    "eslint": "^9.26.0",
-    "eslint-config-prettier": "^10.1.5",
-    "eslint-plugin-prettier": "^5.4.0",
-    "globals": "^16.1.0",
-    "iina-plugin-definition": "^0.99.3",
-    "jest": "^29.7.0",
-    "prettier": "^3.5.3"
-  }
+    "name": "iina-plugin-poc",
+    "version": "1.0.0",
+    "description": "Proof of concept plugin for the IINA video player",
+    "homepage": "https://github.com/Robpol86/iina-plugin-poc",
+    "bugs": {
+        "url": "https://github.com/Robpol86/iina-plugin-poc/issues"
+    },
+    "repository": {
+        "type": "git",
+        "url": "https://github.com/Robpol86/iina-plugin-poc.git"
+    },
+    "license": "BSD-2-Clause",
+    "author": "Robpol86",
+    "type": "module",
+    "scripts": {
+        "lint": "eslint --no-error-on-unmatched-pattern . --ext js --ext cjs --ext mjs",
+        "lint:fix": "npm run lint -- --fix",
+        "test": "NODE_OPTIONS='--experimental-vm-modules' jest --coverage --verbose --silent ${SPECIFIC_TEST:+--silent=false -t ${SPECIFIC_TEST// /.}}"
+    },
+    "devDependencies": {
+        "eslint": "^9.26.0",
+        "eslint-config-prettier": "^10.1.5",
+        "eslint-plugin-package-json": "^0.31.0",
+        "eslint-plugin-prettier": "^5.4.0",
+        "globals": "^16.1.0",
+        "iina-plugin-definition": "^0.99.3",
+        "jest": "^29.7.0",
+        "prettier": "^3.5.3"
+    }
 }
