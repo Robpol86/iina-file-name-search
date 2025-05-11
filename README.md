@@ -1,6 +1,6 @@
-# iina-plugin-poc
+# iina-file-name-search
 
-Proof of concept plugin for the IINA video player
+Search file names on the internet.
 
 ## Usage
 

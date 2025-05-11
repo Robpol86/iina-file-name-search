@@ -1,10 +1,10 @@
 {
   "allowedDomains": ["*"],
   "author": { "email": "robpol86@gmail.com", "name": "Robpol86" },
-  "description": "Proof of concept plugin for the IINA video player",
+  "description": "Search file names on the internet",
   "entry": "src/index.cjs",
-  "identifier": "com.robpol86.iina-plugin-poc",
-  "name": "iina-plugin-poc",
+  "identifier": "com.robpol86.iina-file-name-search",
+  "name": "File Name Search",
   "permissions": ["show-osd", "file-system", "network-request"],
   "preferenceDefaults": {},
   "preferencesPage": "src/preferences.html",
