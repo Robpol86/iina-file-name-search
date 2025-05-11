@@ -1,4 +1,4 @@
-import { defineConfig } from "eslint/config";
+import { defineConfig, globalIgnores } from "eslint/config";
 import eslintPluginPackageJson from "eslint-plugin-package-json";
 import eslintPluginPrettierRecommended from "eslint-plugin-prettier/recommended";
 import globals from "globals";
@@ -6,14 +6,18 @@ import js from "@eslint/js";
 import json from "@eslint/json";
 
 export default defineConfig([
+    globalIgnores(["coverage/"]),
     { languageOptions: { globals: { ...globals.node, iina: true } } },
     { files: ["**/*.js", "**/*.cjs", "**/*.mjs"], plugins: { js }, extends: ["js/recommended"] },
     {
         files: ["**/*.json"],
         plugins: { json },
         language: "json/json",
-        ignores: ["package-lock.json"],
+        ignores: ["package.json", "package-lock.json"],
         ...json.configs.recommended,
+        rules: {
+            "json/sort-keys": "error",
+        },
     },
     {
         rules: {

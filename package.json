@@ -14,7 +14,7 @@
     "author": "Robpol86",
     "type": "module",
     "scripts": {
-        "lint": "eslint --no-error-on-unmatched-pattern . --ext js --ext cjs --ext mjs",
+        "lint": "eslint .",
         "lint:fix": "npm run lint -- --fix",
         "test": "NODE_OPTIONS='--experimental-vm-modules' jest --coverage --verbose --silent ${SPECIFIC_TEST:+--silent=false -t ${SPECIFIC_TEST// /.}}"
     },
