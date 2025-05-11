@@ -1,20 +1,12 @@
 {
-  "name": "iina-plugin-poc",
-  "identifier": "com.robpol86.iina-plugin-poc",
-  "version": "1.0.0",
-  "description": "Proof of concept plugin for the IINA video player",
-  "author": {
-    "name": "Robpol86",
-    "email": "robpol86@gmail.com",
-    "url": "https://github.com/Robpol86/iina-plugin-poc"
-  },
-  "entry": "src/index.cjs",
-  "permissions": [
-    "show-osd",
-    "file-system",
-    "network-request"
-  ],
   "allowedDomains": ["*"],
+  "author": { "email": "robpol86@gmail.com", "name": "Robpol86" },
+  "description": "Proof of concept plugin for the IINA video player",
+  "entry": "src/index.cjs",
+  "identifier": "com.robpol86.iina-plugin-poc",
+  "name": "iina-plugin-poc",
+  "permissions": ["show-osd", "file-system", "network-request"],
+  "preferenceDefaults": {},
   "preferencesPage": "src/preferences.html",
-  "preferenceDefaults": {}
+  "version": "1.0.0"
 }
