@@ -39,4 +39,10 @@ export default defineConfig([
     },
     eslintPluginPrettierRecommended,
     eslintPluginPackageJson.configs.recommended,
+    {
+        rules: {
+            "package-json/require-version": "off",
+            "package-json/valid-package-definition": "off",
+        },
+    },
 ]);
