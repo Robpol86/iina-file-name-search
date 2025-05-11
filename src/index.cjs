@@ -42,7 +42,7 @@ function onFileLoaded(currentFile) {
             iina.console.debug("regex did not match, noop");
             return;
         }
-        videoName = match[0][0];
+        videoName = match[0];
     }
 
     iina.utils.open(prefsUrl.replace("%s", videoName));
