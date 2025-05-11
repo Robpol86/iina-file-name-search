@@ -3,10 +3,18 @@ import eslintPluginPackageJson from "eslint-plugin-package-json";
 import eslintPluginPrettierRecommended from "eslint-plugin-prettier/recommended";
 import globals from "globals";
 import js from "@eslint/js";
+import json from "@eslint/json";
 
 export default defineConfig([
     { languageOptions: { globals: { ...globals.node, iina: true } } },
-    { plugins: { js }, extends: ["js/recommended"] },
+    { files: ["**/*.js", "**/*.cjs", "**/*.mjs"], plugins: { js }, extends: ["js/recommended"] },
+    {
+        files: ["**/*.json"],
+        plugins: { json },
+        language: "json/json",
+        ignores: ["package-lock.json"],
+        ...json.configs.recommended,
+    },
     {
         rules: {
             "no-unused-vars": [
