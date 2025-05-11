@@ -3,24 +3,23 @@
  */
 
 /**
- * Get the basename of a file URL.
+ * Get the file name from a URL without its file extension.
  *
  * @param {string} url - URL to a file.
  *
- * @returns {string} - The basename.
+ * @returns {string} - The file name without the file extension.
  */
-function getBasename(url) {
+function getFileNameSansExt(url) {
     if (!url) return "";
-    const lastDelimIdx = url.lastIndexOf("/");
 
-    // Handle filename-only.
-    if (lastDelimIdx < 0) return url;
+    const lastSepIdx = url.lastIndexOf("/");
+    const basename = lastSepIdx < 0 ? url : url.slice(lastSepIdx + 1);
 
-    const basename = url.slice(lastDelimIdx + 1);
-    return basename;
+    const lastDotIdx = basename.lastIndexOf(".");
+    return lastDotIdx < 1 ? basename : basename.slice(0, lastDotIdx);
 }
 
 // Export.
 module.exports = {
-    getBasename,
+    getFileNameSansExt,
 };

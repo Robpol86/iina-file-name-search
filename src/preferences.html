@@ -1,1 +1,33 @@
-Hello World
+<!-- TODO save on keyUp -->
+
+<body>
+    <div class="pref-section">
+        <label>
+            <input type="checkbox" data-type="bool" data-pref-key="auto_search" />
+            Automatically open browser when playing a file
+        </label>
+        <p class="small secondary pref-help">
+            Every time a new IINA window is opened or playing the next file a browser window will open. If unchecked you can
+            do this manually in the plugins sidebar.
+        </p>
+    </div>
+    <div class="pref-section">
+        Search URL (<code>%s</code> will be replaced with the query):
+        <div style="margin-top: 2px">
+            <input type="text" data-pref-key="url" style="width: 100%; margin-top: 2px" />
+        </div>
+        <p class="small secondary pref-help">
+            This is the URL that will be opened in a browser window.
+        </p>
+    </div>
+    <div class="pref-section">
+        Regex matching (e.g. <code>^[a-zA-Z0-9]{10}</code>):
+        <div style="margin-top: 2px">
+            <input type="text" data-pref-key="regex" style="width: 100%; margin-top: 2px" />
+        </div>
+        <p class="small secondary pref-help">
+            By default the entire file name (excluding the file extension) will be searched. You can use regex to only search
+            a portion of a file name instead. If there is no match nothing will be searched.
+        </p>
+    </div>
+</body>

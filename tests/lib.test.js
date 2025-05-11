@@ -1,12 +1,19 @@
 import { describe, expect, test } from "@jest/globals";
-import { getBasename } from "../src/lib.cjs";
+import { getFileNameSansExt } from "../src/lib.cjs";
 
-describe("getBasename", () => {
+describe("getFileNameSansExt", () => {
     test.each([
-        ["file:///Users/me/Downloads/file.mp4", "file.mp4"],
-        ["file.mp4", "file.mp4"],
+        ["file:///Users/me/Downloads/file.mp4", "file"],
+        ["file:///Users/me/Downloads/file", "file"],
+        ["file:///Users/me/Downloads/.file", ".file"],
+        ["file:///Users/me/Downloads/a.b.c", "a.b"],
+        ["file:///Users/me/Downloads/.a.b.c", ".a.b"],
+        ["file.video.mp4", "file.video"],
+        ["file.mp4", "file"],
+        ["file", "file"],
+        [".file", ".file"],
         ["", ""],
-    ])("getBasename::%s:%s", (filePath, basename) => {
-        expect(getBasename(filePath)).toEqual(basename);
+    ])("getFileNameSansExt::%s:%s", (filePath, basename) => {
+        expect(getFileNameSansExt(filePath)).toEqual(basename);
     });
 });
