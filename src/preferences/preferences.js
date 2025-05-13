@@ -16,5 +16,5 @@ function dispatchChangeEvent(element) {
 
 // Register event listeners.
 document.querySelectorAll('input[type="text"]').forEach((input) => {
-    input.addEventListener("keyup", (event) => dispatchChangeEvent(event.target));
+    input.addEventListener("input", (event) => dispatchChangeEvent(event.target));
 });
