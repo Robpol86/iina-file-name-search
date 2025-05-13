@@ -55,7 +55,7 @@ function dispatchChangeEvent(element) {
 function showValueInSpan(input) {
     input.labels.forEach((label) => {
         label.querySelectorAll("span.showValue").forEach((span) => {
-            span.textContent = input.value;
+            span.textContent = `${input.value} second${input.value == 1 ? "" : "s"}`;
         });
     });
 }
