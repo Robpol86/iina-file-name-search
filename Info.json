@@ -12,7 +12,7 @@
     "regex": "",
     "url": ""
   },
-  "preferencesPage": "src/preferences.html",
+  "preferencesPage": "src/preferences/preferences.html",
   "sidebarTab": { "name": "File Name Search" },
   "version": "1.0.0"
 }
