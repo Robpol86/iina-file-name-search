@@ -8,7 +8,8 @@
   "name": "File Name Search",
   "permissions": ["show-osd"],
   "preferenceDefaults": {
-    "auto_search": false,
+    "auto_delay": 0,
+    "auto_enabled": false,
     "regex": "",
     "url": ""
   },
