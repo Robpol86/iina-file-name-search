@@ -49,6 +49,7 @@ function dispatchChangeEvent(element) {
 
 // Register event listeners.
 document.querySelectorAll('input[type="text"]').forEach((input) => {
-    input.addEventListener("change", (event) => validateInput(event.target)); // Show/hide error messages.
     input.addEventListener("input", (event) => dispatchChangeEvent(event.target)); // Save instantly on keypress/paste/etc.
+    input.addEventListener("change", (event) => validateInput(event.target)); // Show/hide error messages.
+    setTimeout(() => validateInput(input), 100); // Validate on load after IINA calls preferences.get().
 });
