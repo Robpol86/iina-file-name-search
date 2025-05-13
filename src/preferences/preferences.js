@@ -70,3 +70,7 @@ document.querySelectorAll('input[type="range"]').forEach((input) => {
     input.addEventListener("input", (event) => showValueInSpan(event.target)); // Show value in <span>.
     setTimeout(() => showValueInSpan(input), 100); // Show value on load after IINA calls preferences.get().
 });
+document.querySelector('input[data-pref-key="auto_enabled"]').addEventListener("change", (event) => {
+    // Disable range if checkbox is unchecked.
+    document.querySelector('input[data-pref-key="auto_delay"]').disabled = !event.target.checked;
+});
