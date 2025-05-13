@@ -75,6 +75,6 @@ document.querySelector('input[data-pref-key="auto_enabled"]').addEventListener("
     document.querySelector('input[data-pref-key="auto_delay"]').disabled = !event.target.checked;
 });
 document.querySelectorAll("input[data-pref-key]").forEach((input) => {
-    // Enable validators after IINA loads preferences.
+    // Call validators and the other event listeners on load after IINA calls preferences.get().
     setTimeout(() => dispatchChangeEvent(input), 100);
 });
