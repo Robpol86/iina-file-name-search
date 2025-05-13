@@ -7,7 +7,15 @@ import json from "@eslint/json";
 
 export default defineConfig([
     globalIgnores(["coverage/"]),
-    { languageOptions: { globals: { ...globals.node, iina: true } } },
+    {
+        languageOptions: {
+            globals: {
+                ...globals.browser,
+                ...globals.node,
+                iina: true,
+            },
+        },
+    },
     { files: ["**/*.js", "**/*.cjs", "**/*.mjs"], plugins: { js }, extends: ["js/recommended"] },
     {
         files: ["**/*.json"],
