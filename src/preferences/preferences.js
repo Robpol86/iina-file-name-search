@@ -47,9 +47,26 @@ function dispatchChangeEvent(element) {
     element.dispatchEvent(changeEvent);
 }
 
+/**
+ * Show an input element's current value in a span with class "showValue".
+ *
+ * @param {Element} input - The input element to read the value from.
+ */
+function showValueInSpan(input) {
+    input.labels.forEach((label) => {
+        label.querySelectorAll("span.showValue").forEach((span) => {
+            span.textContent = input.value;
+        });
+    });
+}
+
 // Register event listeners.
 document.querySelectorAll('input[type="text"]').forEach((input) => {
     input.addEventListener("input", (event) => dispatchChangeEvent(event.target)); // Save instantly on keypress/paste/etc.
     input.addEventListener("change", (event) => validateInput(event.target)); // Show/hide error messages.
     setTimeout(() => validateInput(input), 100); // Validate on load after IINA calls preferences.get().
+});
+document.querySelectorAll('input[type="range"]').forEach((input) => {
+    input.addEventListener("input", (event) => showValueInSpan(event.target)); // Show value in <span>.
+    setTimeout(() => showValueInSpan(input), 100); // Show value on load after IINA calls preferences.get().
 });

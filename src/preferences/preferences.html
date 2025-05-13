@@ -36,12 +36,22 @@
     </div>
     <div class="pref-section">
         <label>
-            <input type="checkbox" data-pref-key="auto_search" data-type="bool" />
+            <input type="checkbox" data-pref-key="auto_enabled" />
             Automatically open browser when playing a file
         </label>
         <p class="small secondary pref-help">
             Every time a new IINA window is opened or playing the next file a browser window will open. If unchecked you
             can do this manually in the plugins sidebar.
+        </p>
+    </div>
+    <div class="pref-section">
+        <label>
+            <input type="range" data-pref-key="auto_delay" min="0" max="10" />
+            Auto-open delay <span class="showValue"></span> second(s)
+        </label>
+        <p class="small secondary pref-help">
+            Show an overlay an wait these many seconds before actually opening a new browser window. IINA will lose
+            focus when the browser opens.
         </p>
     </div>
 </body>
