@@ -64,13 +64,17 @@ function showValueInSpan(input) {
 document.querySelectorAll('input[type="text"]').forEach((input) => {
     input.addEventListener("input", (event) => dispatchChangeEvent(event.target)); // Save instantly on keypress/paste/etc.
     input.addEventListener("change", (event) => validateInput(event.target)); // Show/hide error messages.
-    setTimeout(() => validateInput(input), 100); // Validate on load after IINA calls preferences.get().
 });
 document.querySelectorAll('input[type="range"]').forEach((input) => {
-    input.addEventListener("input", (event) => showValueInSpan(event.target)); // Show value in <span>.
-    setTimeout(() => showValueInSpan(input), 100); // Show value on load after IINA calls preferences.get().
+    ["input", "change"].forEach((eventType) => {
+        input.addEventListener(eventType, (event) => showValueInSpan(event.target)); // Show value in <span>.
+    });
 });
 document.querySelector('input[data-pref-key="auto_enabled"]').addEventListener("change", (event) => {
     // Disable range if checkbox is unchecked.
     document.querySelector('input[data-pref-key="auto_delay"]').disabled = !event.target.checked;
+});
+document.querySelectorAll("input[data-pref-key]").forEach((input) => {
+    // Enable validators after IINA loads preferences.
+    setTimeout(() => dispatchChangeEvent(input), 100);
 });
