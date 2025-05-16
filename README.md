@@ -1,6 +1,6 @@
 # iina-file-name-search
 
-Search the currently playing file's name on a website.
+IINA plugin that lets you search the currently playing file's name on a website.
 
 ## Installation
 
