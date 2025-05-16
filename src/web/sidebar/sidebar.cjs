@@ -70,6 +70,7 @@ openBrowserForm.addEventListener("submit", (event) => {
  */
 window.onMessageAck("file-loaded", (message) => {
     const { fileNameSansExt, prefsRegex, prefsUrl } = message;
+    let defaultRadioRegex = false;
 
     // Submit button.
     const resultsUrl = window.validateUrl(prefsUrl);
@@ -86,7 +87,6 @@ window.onMessageAck("file-loaded", (message) => {
     radioFileName.dataset.searchInputValue = fileNameSansExt;
 
     // Regex radio button.
-    let defaultRegex = false;
     if (!prefsRegex) {
         radioRegex.dataset.searchInputValue = "";
         window.showHideError(warningInvalidRegex, "No regex specified in plugin preferences");
@@ -103,16 +103,20 @@ window.onMessageAck("file-loaded", (message) => {
                 window.showHideError(warningInvalidRegex, "Regex did not match");
             } else {
                 window.showHideError(warningInvalidRegex, "");
-                defaultRegex = true;
+                defaultRadioRegex = true;
             }
         }
     }
-    if (defaultRegex) {
+
+    // Select default radio button.
+    if (defaultRadioRegex) {
         radioFileName.checked = false;
         radioRegex.checked = true;
+        fillSearchInput({ target: radioRegex });
     } else {
         radioRegex.checked = false;
         radioFileName.checked = true;
+        fillSearchInput({ target: radioFileName });
     }
 
     showHideRegexWarning();
