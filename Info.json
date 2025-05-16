@@ -1,7 +1,7 @@
 {
   "author": { "email": "robpol86@gmail.com", "name": "Robpol86" },
   "description": "Search file names on the internet",
-  "entry": "src/index.cjs",
+  "entry": "src/entry.cjs",
   "ghRepo": "Robpol86/iina-file-name-search",
   "ghVersion": 1,
   "identifier": "com.robpol86.iina-file-name-search",
@@ -13,7 +13,7 @@
     "regex": "",
     "url": ""
   },
-  "preferencesPage": "src/preferences/preferences.html",
+  "preferencesPage": "src/web/preferences/preferences.html",
   "sidebarTab": { "name": "File Name Search" },
   "version": "1.0.0"
 }
