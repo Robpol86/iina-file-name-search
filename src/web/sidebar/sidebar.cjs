@@ -5,6 +5,7 @@
 const openBrowserForm = document.getElementById("openBrowserForm");
 const radioFileName = document.getElementById("radioFileName");
 const radioRegex = document.getElementById("radioRegex");
+const warningInvalidRegexContainer = document.getElementById("warningInvalidRegexContainer");
 const searchInput = document.getElementById("searchInput");
 const errorInvalidInput = document.getElementById("errorInvalidInput");
 const openBrowserButton = document.getElementById("openBrowserButton");
@@ -25,6 +26,17 @@ searchInput.addEventListener("input", enableDisableButton); // Enable/disable wh
 enableDisableButton(); // Enable/disable on load.
 
 /**
+ * Show/hide regex warnings.
+ */
+function showHideRegexWarning() {
+    if (radioRegex.checked) warningInvalidRegexContainer.classList.remove("hidden");
+    else warningInvalidRegexContainer.classList.add("hidden");
+}
+radioFileName.addEventListener("change", showHideRegexWarning);
+radioRegex.addEventListener("change", showHideRegexWarning);
+showHideRegexWarning();
+
+/**
  * Replace searchInput text with default value when user selects a radio button.
  *
  * User can use this to reset any changes they made to the searchInput field.
@@ -33,7 +45,7 @@ enableDisableButton(); // Enable/disable on load.
  */
 function fillSearchInput(event) {
     const radio = event.target;
-    searchInput.value = radio.dataset.searchInputValue ?? "";
+    if (radio.checked) searchInput.value = radio.dataset.searchInputValue ?? "";
     enableDisableButton();
 }
 radioFileName.addEventListener("change", fillSearchInput);
