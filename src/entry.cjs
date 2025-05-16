@@ -12,7 +12,7 @@ const { getFileNameSansExt, postMessageAck } = require("./lib.cjs");
 function openBrowser(message) {
     iina.console.log(`openBrowser(${message.search})`);
 
-    prefsUrl = iina.preferences.get("url");
+    const prefsUrl = iina.preferences.get("url");
     iina.utils.open(prefsUrl.replace("%s", message.search));
 }
 
