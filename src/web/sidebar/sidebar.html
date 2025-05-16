@@ -1,0 +1,52 @@
+<html>
+
+<head>
+    <link rel="stylesheet" href="iina-prefs.css">
+    <link rel="stylesheet" href="sidebar.css">
+    <script src="sidebar.cjs" defer></script>
+</head>
+
+<body>
+    <form id="openBrowserForm">
+        <div class="pref-section">
+            <div style="margin-top: 2px" class="radio-group">
+                <label>
+                    <input id="radioFileName" type="radio" name="populateInputText" />
+                    Original File Name
+                </label>
+                <label>
+                    <input id="radioRegex" type="radio" name="populateInputText" />
+                    Regex Match
+                </label>
+            </div>
+        </div>
+        <div class="pref-section">
+            <div style="margin-top: 2px">
+                <div class="small warning pref-help">
+                    <p id="warningInvalidRegex" class="hidden"></p>
+                </div>
+            </div>
+        </div>
+        <div class="pref-section">
+            Search this file name in a web browser:
+            <div style="margin-top: 2px">
+                <input id="searchInput" type="text" style="width: 100%; margin-top: 2px" />
+            </div>
+        </div>
+        <div class="pref-section">
+            <div style="margin-top: 2px">
+                <div class="small error pref-help">
+                    <p id="errorInvalidUrl" class="hidden"></p>
+                    <p id="errorInvalidInput" class="hidden"></p>
+                </div>
+            </div>
+        </div>
+        <div class="pref-section">
+            <div style="margin-top: 2px" class="submit-button">
+                <input id="openBrowserButton" type="submit" value="Open Browser" />
+            </div>
+        </div>
+    </form>
+</body>
+
+</html>
