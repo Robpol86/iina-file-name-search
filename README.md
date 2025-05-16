@@ -15,7 +15,7 @@ In preferences type in a URL with `%s` which will be replaced by the file name.
 
 ![preferences](preferences.png "preferences")
 
-Then when a video is playing open the side bar (Plugin > File Name Search > Open Sidebar) and click the "Open" button.
+Then when a video is playing open the side bar (Plugin > File Name Search > Show Sidebar) and click the "Open" button.
 
 ![sidebar](sidebar.png "sidebar")
 
