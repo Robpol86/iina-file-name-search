@@ -1,5 +1,5 @@
-import { afterEach, beforeEach, describe, expect, jest, test } from "@jest/globals";
-import { getFileNameSansExt, postMessageAck } from "../src/lib.cjs";
+import { describe, expect, test } from "@jest/globals";
+import { getFileNameSansExt } from "../src/lib.cjs";
 
 describe("getFileNameSansExt", () => {
     test.each([
