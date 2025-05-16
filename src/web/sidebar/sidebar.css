@@ -2,6 +2,15 @@
     color: rgba(255, 0, 0, 0.8)
 }
 
+.warning {
+    color: rgba(255, 255, 0, 0.8)
+}
+
+
+.hidden {
+    display: none;
+}
+
 .radio-group {
     width: 100%;
     display: flex;

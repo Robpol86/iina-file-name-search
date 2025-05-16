@@ -21,6 +21,13 @@
             </div>
         </div>
         <div class="pref-section">
+            <div style="margin-top: 2px">
+                <div class="small warning pref-help">
+                    <p id="warningInvalidRegex" class="hidden"></p>
+                </div>
+            </div>
+        </div>
+        <div class="pref-section">
             Search this file name in a web browser:
             <div style="margin-top: 2px">
                 <input id="searchInput" type="text" style="width: 100%; margin-top: 2px" />
@@ -28,12 +35,15 @@
         </div>
         <div class="pref-section">
             <div style="margin-top: 2px">
-                <div id="errorMessagesContainer" class="small error pref-help"></div>
+                <div class="small error pref-help">
+                    <p id="errorInvalidUrl" class="hidden"></p>
+                    <p id="errorInvalidInput" class="hidden"></p>
+                </div>
             </div>
         </div>
         <div class="pref-section">
             <div style="margin-top: 2px" class="submit-button">
-                <input id="openBrowserSubmit" type="submit" value="Open Browser" />
+                <input id="openBrowserButton" type="submit" value="Open Browser" />
             </div>
         </div>
     </form>
