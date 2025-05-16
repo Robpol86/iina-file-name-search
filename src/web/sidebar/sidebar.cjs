@@ -58,3 +58,8 @@ openBrowserForm.addEventListener("submit", (event) => {
     event.preventDefault(); // Don't clear the form.
     if (!openBrowserButton.disabled) iina.postMessage("open-browser", { search: searchInput.value });
 });
+
+/**
+ * Receive file-loaded message from plugin.
+ */
+window.onMessageAck("file-loaded", () => {}); // TODO
