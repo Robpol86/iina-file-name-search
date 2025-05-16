@@ -46,7 +46,7 @@ function postMessageAck(target, name, payload, retryIn = 100, timeout = 1000, _i
     // Setup re-send timer.
     timeoutId = setTimeout(() => {
         timeout -= retryIn;
-        if (timeout < 0) {
+        if (timeout < 1) {
             _iina.console.error(`${target} did not respond for ${name}, timed out, aborting message`);
             return;
         }

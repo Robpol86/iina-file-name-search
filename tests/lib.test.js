@@ -48,7 +48,7 @@ describe("postMessageAck", () => {
 
     test("one attempt", () => {
         // Send initial message.
-        postMessageAck("sidebar", "test", {}, 100, 1000, iina);
+        postMessageAck("sidebar", "test", {}, 100, 200, iina);
         expect(logs.pop()).toEqual("postMessageAck(sidebar, test, ...)");
         expect(postMessageSent.pop()).toEqual("test");
         // Remote acknowledges.
@@ -64,7 +64,7 @@ describe("postMessageAck", () => {
 
     test("two attempts", () => {
         // Send initial message.
-        postMessageAck("sidebar", "test", {}, 100, 1000, iina);
+        postMessageAck("sidebar", "test", {}, 100, 200, iina);
         expect(logs.pop()).toEqual("postMessageAck(sidebar, test, ...)");
         expect(postMessageSent.pop()).toEqual("test");
         // Advance timer to second attempt.
@@ -86,5 +86,27 @@ describe("postMessageAck", () => {
         expect(postMessageSent).toHaveLength(0);
     });
 
-    test.todo("timeout");
+    test.each([2, 3])("timeout::attempts=%d", (attempts) => {
+        // Send initial message.
+        postMessageAck("sidebar", "test", {}, 100, attempts === 2 ? 200 : 201, iina);
+        expect(logs.pop()).toEqual("postMessageAck(sidebar, test, ...)");
+        // Advance timer to second attempt.
+        jest.advanceTimersByTime(100);
+        expect(logs.shift()).toEqual("sidebar did not respond for test, re-sending");
+        expect(logs.pop()).toEqual("postMessageAck(sidebar, test, ...)");
+        // Advance timer to third attempt.
+        jest.advanceTimersByTime(100);
+        if (attempts === 2) {
+            // Timeout before third attempt.
+            expect(logs.pop()).toEqual("sidebar did not respond for test, timed out, aborting message");
+        } else {
+            expect(logs.shift()).toEqual("sidebar did not respond for test, re-sending");
+            expect(logs.pop()).toEqual("postMessageAck(sidebar, test, ...)");
+            jest.advanceTimersByTime(100);
+            expect(logs.pop()).toEqual("sidebar did not respond for test, timed out, aborting message");
+        }
+        // Confirm no more timers.
+        jest.advanceTimersByTime(2000);
+        expect(logs).toHaveLength(0);
+    });
 });
