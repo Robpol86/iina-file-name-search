@@ -1,5 +1,5 @@
 /**
- * Common strings, functions, and objects used throughout the plugin.
+ * Shared code used outside of web views.
  */
 
 /**
