@@ -16,7 +16,9 @@ function getFileNameSansExt(url) {
     const basename = lastSepIdx < 0 ? url : url.slice(lastSepIdx + 1);
 
     const lastDotIdx = basename.lastIndexOf(".");
-    return lastDotIdx < 1 ? basename : basename.slice(0, lastDotIdx);
+    const name = lastDotIdx < 1 ? basename : basename.slice(0, lastDotIdx);
+
+    return decodeURI(name);
 }
 
 /**

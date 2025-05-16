@@ -8,7 +8,7 @@ describe("getFileNameSansExt", () => {
         ["file:///Users/me/Downloads/.file", ".file"],
         ["file:///Users/me/Downloads/a.b.c", "a.b"],
         ["file:///Users/me/Downloads/.a.b.c", ".a.b"],
-        ["file:///Users/me/Downloads/video%20file.mp4", "video file.mp4"],
+        ["file:///Users/me/Downloads/video%20file.mp4", "video file"],
         ["file.video.mp4", "file.video"],
         ["file.mp4", "file"],
         ["file", "file"],
