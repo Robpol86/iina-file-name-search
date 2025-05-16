@@ -33,7 +33,7 @@ enableDisableButton(); // Enable/disable on load.
  */
 function fillSearchInput(event) {
     const radio = event.target;
-    searchInput.value = radio.dataset.searchInputValue ?? "";
+    if (radio.checked) searchInput.value = radio.dataset.searchInputValue ?? "";
     enableDisableButton();
 }
 radioFileName.addEventListener("change", fillSearchInput);
@@ -48,7 +48,32 @@ openBrowserForm.addEventListener("submit", (event) => {
 });
 
 // Receive file-loaded message from plugin.
-window.onMessageAck("file-loaded", () => {
-    // todo
+window.onMessageAck("file-loaded", (message) => {
+    const { fileNameSansExt, prefsRegex, prefsUrl } = message;
+
+    // File name radio button.
+    radioFileName.dataset.searchInputValue = fileNameSansExt;
+
+    // Regex radio button.
+    if (prefsRegex) {
+        // const resultsRegex = window.validateRegex(prefsRegex);
+        // if (resultsRegex.isValid) {
+        //     radioRegex.dataset.searchInputValue = fileNameSansExt.match(resultsRegex.regex);
+        // } else {
+        //     radioRegex.dataset.searchInputValue = "";
+        //     errors.push(resultsRegex.error);
+        // }
+    } else {
+        radioRegex.dataset.searchInputValue = "";
+    }
+
+    // Submit button.
+    const resultsUrl = window.validateUrl(prefsUrl);
+    if (resultsUrl.isValid) {
+        openBrowserButton.value = `Open ${resultsUrl.url.hostname}`;
+    } else {
+        // todo
+    }
+
     enableDisableButton();
 });
