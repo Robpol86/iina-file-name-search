@@ -2,7 +2,7 @@
  * Main entrypoint.
  */
 
-const { getFileNameSansExt } = require("./lib.cjs");
+const { getFileNameSansExt, postMessageAck } = require("./lib.cjs");
 
 /**
  * Event handler for iina.window-loaded.
@@ -21,42 +21,12 @@ function onWindowLoaded() {
 function onFileLoaded(fileUrl) {
     iina.console.log("onFileLoaded");
 
-    if (iina.preferences.get("auto_search") !== true) {
-        iina.console.debug("auto_search not enabled, noop");
-        return;
-    }
-
-    const prefsUrl = iina.preferences.get("url");
-    if (!prefsUrl) {
-        iina.console.error("PLUGIN ERROR: No URL specified");
-        iina.core.osd("PLUGIN ERROR: No URL specified");
-        return;
-    } else if (!prefsUrl.includes("%s")) {
-        iina.console.error("PLUGIN ERROR: %s is missing from url");
-        iina.core.osd("PLUGIN ERROR: %s is missing from url");
-        return;
-    }
-
-    let videoName = getFileNameSansExt(fileUrl);
-    const prefsRegex = iina.preferences.get("regex");
-    if (prefsRegex) {
-        let regex;
-        try {
-            regex = new RegExp(prefsRegex);
-        } catch (exc) {
-            iina.console.error(`PLUGIN ERROR: invalid regex: ${exc.message}`);
-            iina.core.osd("PLUGIN ERROR: invalid regex");
-            return;
-        }
-        const match = videoName.match(regex);
-        if (!match) {
-            iina.console.debug("regex did not match, noop");
-            return;
-        }
-        videoName = match[0];
-    }
-
-    // iina.utils.open(prefsUrl.replace("%s", videoName));
+    // Update sidebar.
+    postMessageAck("sidebar", "file-loaded", {
+        fileNameSansExt: getFileNameSansExt(fileUrl),
+        prefsRegex: iina.preferences.get("regex"),
+        prefsUrl: iina.preferences.get("url"),
+    });
 }
 
 // Menu items.

@@ -99,15 +99,31 @@ function showHideError(element, errorMessage) {
     }
 }
 
+/**
+ * Acknowledge to the sender that the message has been received.
+ *
+ * @param {string} name - Message name passed to onMessage().
+ * @param {Function} callback - Caller's callback function meant for onMessage().
+ * @param {IINA.API} _iina - iina object, for testing.
+ */
+function onMessageAck(name, callback, _iina = iina) {
+    _iina.onMessage(name, (...args) => {
+        _iina.postMessage(`${name}::ack`);
+        callback(...args);
+    });
+}
+
 // Export.
 if (typeof module === "object") {
     module.exports = {
         validateUrl,
         validateRegex,
         showHideError,
+        onMessageAck,
     };
 } else {
     window.validateUrl = validateUrl;
     window.validateRegex = validateRegex;
     window.showHideError = showHideError;
+    window.onMessageAck = onMessageAck;
 }
