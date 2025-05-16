@@ -5,6 +5,7 @@
 const openBrowserForm = document.getElementById("openBrowserForm");
 const radioFileName = document.getElementById("radioFileName");
 const radioRegex = document.getElementById("radioRegex");
+const warningInvalidRegexContainer = document.getElementById("warningInvalidRegexContainer");
 const searchInput = document.getElementById("searchInput");
 const errorInvalidInput = document.getElementById("errorInvalidInput");
 const openBrowserButton = document.getElementById("openBrowserButton");
@@ -23,6 +24,17 @@ function enableDisableButton() {
 }
 searchInput.addEventListener("input", enableDisableButton); // Enable/disable when typing.
 enableDisableButton(); // Enable/disable on load.
+
+/**
+ * Show/hide regex warnings.
+ */
+function showHideRegexWarning() {
+    if (radioRegex.checked) warningInvalidRegexContainer.classList.remove("hidden");
+    else warningInvalidRegexContainer.classList.add("hidden");
+}
+radioFileName.addEventListener("change", showHideRegexWarning);
+radioRegex.addEventListener("change", showHideRegexWarning);
+showHideRegexWarning();
 
 /**
  * Replace searchInput text with default value when user selects a radio button.
