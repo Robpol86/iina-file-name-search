@@ -62,6 +62,29 @@ describe("postMessageAck", () => {
         expect(postMessageSent).toHaveLength(0);
     });
 
-    test.todo("two attempts");
+    test("two attempts", () => {
+        // Send initial message.
+        postMessageAck("sidebar", "test", {}, 100, 1000, iina);
+        expect(logs.pop()).toEqual("postMessageAck(sidebar, test, ...)");
+        expect(postMessageSent.pop()).toEqual("test");
+        // Advance timer to second attempt.
+        jest.advanceTimersByTime(99);
+        expect(logs).toHaveLength(0);
+        expect(postMessageSent).toHaveLength(0);
+        jest.advanceTimersByTime(1);
+        expect(logs.shift()).toEqual("sidebar did not respond for test, re-sending");
+        expect(logs.pop()).toEqual("postMessageAck(sidebar, test, ...)");
+        expect(postMessageSent.pop()).toEqual("test");
+        // Remote acknowledges.
+        onMessageRegistered.get("test::ack")();
+        onMessageRegistered.delete("test::ack");
+        expect(logs.pop()).toEqual("sidebar acknowledged test message");
+        // Confirm timer cancelled.
+        jest.advanceTimersByTime(2000);
+        expect(logs).toHaveLength(0);
+        expect(onMessageRegistered.size).toEqual(0);
+        expect(postMessageSent).toHaveLength(0);
+    });
+
     test.todo("timeout");
 });
