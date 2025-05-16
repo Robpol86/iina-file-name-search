@@ -23,7 +23,11 @@ describe("postMessageAck", () => {
     let onMessageRegistered = new Map();
     let postMessageSent = [];
     const iina = {
-        console: { log: (message) => logs.push(message) },
+        console: {
+            log: (message) => logs.push(message),
+            warn: (message) => logs.push(message),
+            error: (message) => logs.push(message),
+        },
         sidebar: {
             onMessage: (name, callback) => onMessageRegistered.set(name, callback),
             postMessage: (name) => postMessageSent.push(name),
