@@ -16,9 +16,11 @@ function onWindowLoaded() {
 /**
  * Event handler for iina.file-loaded.
  *
- * @param {string} currentFile - Currently loaded media file path as a URL.
+ * @param {string} fileUrl - Currently loaded media file path as a URL.
  */
-function onFileLoaded(currentFile) {
+function onFileLoaded(fileUrl) {
+    iina.console.log("onFileLoaded");
+
     if (iina.preferences.get("auto_search") !== true) {
         iina.console.debug("auto_search not enabled, noop");
         return;
@@ -35,7 +37,7 @@ function onFileLoaded(currentFile) {
         return;
     }
 
-    let videoName = getFileNameSansExt(currentFile);
+    let videoName = getFileNameSansExt(fileUrl);
     const prefsRegex = iina.preferences.get("regex");
     if (prefsRegex) {
         let regex;

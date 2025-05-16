@@ -33,7 +33,7 @@ enableDisableButton(); // Enable/disable on load.
  */
 function fillSearchInput(event) {
     const radio = event.target;
-    searchInput.value = radio.dataset.searchInputValue ?? "";
+    if (radio.checked) searchInput.value = radio.dataset.searchInputValue ?? "";
     enableDisableButton();
 }
 radioFileName.addEventListener("change", fillSearchInput);
