@@ -5,12 +5,25 @@
 const { getFileNameSansExt, postMessageAck } = require("./lib.cjs");
 
 /**
+ * Open a web browser.
+ *
+ * @param {{search: string}} message - Message from sidebar.
+ */
+function openBrowser(message) {
+    iina.console.log(`openBrowser(${message.search})`);
+
+    prefsUrl = iina.preferences.get("url");
+    iina.utils.open(prefsUrl.replace("%s", message.search));
+}
+
+/**
  * Event handler for iina.window-loaded.
  */
 function onWindowLoaded() {
     iina.console.log("onWindowLoaded");
     // Initialize the sidebar.
     iina.sidebar.loadFile("src/web/sidebar/sidebar.html");
+    iina.sidebar.onMessage("open-browser", openBrowser);
 }
 
 /**
