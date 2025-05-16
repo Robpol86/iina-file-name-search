@@ -69,6 +69,17 @@ openBrowserForm.addEventListener("submit", (event) => {
 window.onMessageAck("file-loaded", (message) => {
     const { fileNameSansExt, prefsRegex, prefsUrl } = message;
 
+    // Submit button.
+    const resultsUrl = window.validateUrl(prefsUrl);
+    if (!resultsUrl.isValid) {
+        openBrowserButton.dataset.invalidUrl = "true";
+        window.showHideError(errorInvalidUrl, "Preferences error: check URL setting");
+    } else {
+        openBrowserButton.dataset.invalidUrl = "false";
+        window.showHideError(errorInvalidUrl, "");
+        openBrowserButton.value = `Open ${resultsUrl.url.hostname}`;
+    }
+
     // File name radio button.
     radioFileName.dataset.searchInputValue = fileNameSansExt;
 
@@ -101,18 +112,7 @@ window.onMessageAck("file-loaded", (message) => {
         radioRegex.checked = false;
         radioFileName.checked = true;
     }
+
     showHideRegexWarning();
-
-    // Submit button.
-    const resultsUrl = window.validateUrl(prefsUrl);
-    if (!resultsUrl.isValid) {
-        openBrowserButton.dataset.invalidUrl = "true";
-        window.showHideError(errorInvalidUrl, "Preferences error: check URL setting");
-    } else {
-        openBrowserButton.dataset.invalidUrl = "false";
-        window.showHideError(errorInvalidUrl, "");
-        openBrowserButton.value = `Open ${resultsUrl.url.hostname}`;
-    }
-
     enableDisableButton();
 });
