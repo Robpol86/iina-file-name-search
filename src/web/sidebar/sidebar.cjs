@@ -100,7 +100,7 @@ window.onMessageAck("file-loaded", (message) => {
             const matchText = match ? match[0] : "";
             radioRegex.dataset.searchInputValue = matchText;
             if (!matchText) {
-                window.showHideError(warningInvalidRegex, "Regex did not match");
+                window.showHideError(warningInvalidRegex, `Regex did not match: ${resultsRegex.regex}`);
             } else {
                 window.showHideError(warningInvalidRegex, "");
                 defaultRadioRegex = true;
