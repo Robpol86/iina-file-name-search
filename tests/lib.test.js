@@ -1,4 +1,4 @@
-import { describe, expect, test } from "@jest/globals";
+import { afterEach, beforeEach, describe, expect, jest, test } from "@jest/globals";
 import { getFileNameSansExt } from "../src/lib.cjs";
 
 describe("getFileNameSansExt", () => {
@@ -16,4 +16,19 @@ describe("getFileNameSansExt", () => {
     ])("getFileNameSansExt::%s:%s", (filePath, basename) => {
         expect(getFileNameSansExt(filePath)).toEqual(basename);
     });
+});
+
+describe("postMessageAck", () => {
+    beforeEach(() => {
+        jest.useFakeTimers();
+    });
+
+    afterEach(() => {
+        jest.clearAllTimers();
+        jest.useRealTimers();
+    });
+
+    test.todo("one attempt");
+    test.todo("two attempts");
+    test.todo("timeout");
 });
