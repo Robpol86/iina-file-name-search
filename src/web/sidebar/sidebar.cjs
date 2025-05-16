@@ -6,6 +6,7 @@ const openBrowserForm = document.getElementById("openBrowserForm");
 const radioFileName = document.getElementById("radioFileName");
 const radioRegex = document.getElementById("radioRegex");
 const searchInput = document.getElementById("searchInput");
+const errorInvalidUrl = document.getElementById("errorInvalidUrl");
 const errorInvalidInput = document.getElementById("errorInvalidInput");
 const openBrowserButton = document.getElementById("openBrowserButton");
 
@@ -18,7 +19,11 @@ function enableDisableButton() {
         window.showHideError(errorInvalidInput, "Error: search field is empty");
     } else {
         window.showHideError(errorInvalidInput, "");
-        openBrowserButton.disabled = false;
+        if (openBrowserButton.dataset.invalidUrl === "true") {
+            openBrowserButton.disabled = true;
+        } else {
+            openBrowserButton.disabled = false;
+        }
     }
 }
 searchInput.addEventListener("input", enableDisableButton); // Enable/disable when typing.
@@ -56,6 +61,8 @@ window.onMessageAck("file-loaded", (message) => {
 
     // Regex radio button.
     if (prefsRegex) {
+        radioFileName.checked = false;
+        radioRegex.checked = true;
         // const resultsRegex = window.validateRegex(prefsRegex);
         // if (resultsRegex.isValid) {
         //     radioRegex.dataset.searchInputValue = fileNameSansExt.match(resultsRegex.regex);
@@ -64,15 +71,20 @@ window.onMessageAck("file-loaded", (message) => {
         //     errors.push(resultsRegex.error);
         // }
     } else {
+        radioRegex.checked = false;
+        radioFileName.checked = true;
         radioRegex.dataset.searchInputValue = "";
     }
 
     // Submit button.
     const resultsUrl = window.validateUrl(prefsUrl);
     if (resultsUrl.isValid) {
+        openBrowserButton.dataset.invalidUrl = "false";
+        window.showHideError(errorInvalidUrl, "");
         openBrowserButton.value = `Open ${resultsUrl.url.hostname}`;
     } else {
-        // todo
+        openBrowserButton.dataset.invalidUrl = "true";
+        window.showHideError(errorInvalidUrl, "Preferences error: check URL setting");
     }
 
     enableDisableButton();
