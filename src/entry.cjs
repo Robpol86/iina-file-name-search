@@ -5,6 +5,15 @@
 const { getFileNameSansExt } = require("./lib.cjs");
 
 /**
+ * Event handler for iina.window-loaded.
+ */
+function onWindowLoaded() {
+    iina.console.log("onWindowLoaded");
+    // Initialize the sidebar.
+    iina.sidebar.loadFile("src/web/sidebar/sidebar.html");
+}
+
+/**
  * Event handler for iina.file-loaded.
  *
  * @param {string} currentFile - Currently loaded media file path as a URL.
@@ -45,8 +54,12 @@ function onFileLoaded(currentFile) {
         videoName = match[0];
     }
 
-    iina.utils.open(prefsUrl.replace("%s", videoName));
+    // iina.utils.open(prefsUrl.replace("%s", videoName));
 }
 
+// Menu items.
+iina.menu.addItem(iina.menu.item("Show Sidebar", () => iina.sidebar.show()));
+
 // Event handlers.
+iina.event.on("iina.window-loaded", onWindowLoaded);
 iina.event.on("iina.file-loaded", onFileLoaded);

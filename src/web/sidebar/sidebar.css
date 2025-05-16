@@ -1,0 +1,16 @@
+.error {
+    color: rgba(255, 0, 0, 0.8)
+}
+
+.radio-group {
+    width: 100%;
+    display: flex;
+    justify-content: center;
+    gap: 1.5em;
+}
+
+.submit-button {
+    width: 100%;
+    display: flex;
+    justify-content: right;
+}
