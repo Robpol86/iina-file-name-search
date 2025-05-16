@@ -3,10 +3,10 @@
   "description": "Search file names on the internet",
   "entry": "src/entry.cjs",
   "ghRepo": "Robpol86/iina-file-name-search",
-  "ghVersion": 1,
+  "ghVersion": 2,
   "identifier": "com.robpol86.iina-file-name-search",
   "name": "File Name Search",
-  "permissions": ["show-osd"],
+  "permissions": [],
   "preferenceDefaults": {
     "auto_delay": 0,
     "auto_enabled": false,
