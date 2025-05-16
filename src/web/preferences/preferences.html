@@ -2,6 +2,7 @@
 
 <head>
     <link rel="stylesheet" href="preferences.css">
+    <script src="../lib-web.cjs"></script>
     <script src="preferences.cjs" defer></script>
 </head>
 
@@ -11,12 +12,7 @@
         <div style="margin-top: 2px">
             <input type="text" data-pref-key="url" style="width: 100%; margin-top: 2px" />
         </div>
-        <p id="missing_s" class="small error pref-help hidden">
-            Error: %s must be somewhere in the URL
-        </p>
-        <p id="missing_http" class="small error pref-help hidden">
-            Error: URL must start with https:// or http://
-        </p>
+        <p id="urlError" class="small error pref-help hidden"></p>
         <p class="small secondary pref-help">
             This is the URL that will be opened in a browser window.
         </p>
@@ -26,9 +22,7 @@
         <div style="margin-top: 2px">
             <input type="text" data-pref-key="regex" style="width: 100%; margin-top: 2px" />
         </div>
-        <p id="bad_regex" class="small error pref-help hidden">
-            Error: Regex is invalid: <span id="bad_regex_message"></span>
-        </p>
+        <p id="regexError" class="small error pref-help hidden"></p>
         <p class="small secondary pref-help">
             By default the entire file name (excluding the file extension) will be searched. You can use regex to only
             search a portion of a file name instead. If there is no match nothing will be searched.

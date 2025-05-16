@@ -15,10 +15,9 @@ const openBrowserButton = document.getElementById("openBrowserButton");
 function enableDisableButton() {
     if (!searchInput.value) {
         openBrowserButton.disabled = true;
-        errorInvalidInput.textContent = "Error: search field is empty";
-        errorInvalidInput.classList.remove("hidden");
+        window.showHideError(errorInvalidInput, "Error: search field is empty");
     } else {
-        errorInvalidInput.classList.add("hidden");
+        window.showHideError(errorInvalidInput, "");
         openBrowserButton.disabled = false;
     }
 }
