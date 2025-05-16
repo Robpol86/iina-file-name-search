@@ -5,6 +5,8 @@
 const openBrowserForm = document.getElementById("openBrowserForm");
 const radioFileName = document.getElementById("radioFileName");
 const radioRegex = document.getElementById("radioRegex");
+const warningInvalidRegexContainer = document.getElementById("warningInvalidRegexContainer");
+const warningInvalidRegex = document.getElementById("warningInvalidRegex");
 const searchInput = document.getElementById("searchInput");
 const errorInvalidUrl = document.getElementById("errorInvalidUrl");
 const errorInvalidInput = document.getElementById("errorInvalidInput");
@@ -45,6 +47,17 @@ radioFileName.addEventListener("change", fillSearchInput);
 radioRegex.addEventListener("change", fillSearchInput);
 
 /**
+ * Show/hide regex warnings.
+ *
+ * @param {Event} event - Event information.
+ */
+function showHideRegexWarning(event) {
+    if (event.target.checked) warningInvalidRegexContainer.classList.add("hidden");
+    else warningInvalidRegexContainer.classList.remove("hidden");
+}
+radioRegex.addEventListener("change", showHideRegexWarning);
+
+/**
  * Tell the plugin to open a web browser with the search input value.
  */
 openBrowserForm.addEventListener("submit", (event) => {
@@ -60,31 +73,45 @@ window.onMessageAck("file-loaded", (message) => {
     radioFileName.dataset.searchInputValue = fileNameSansExt;
 
     // Regex radio button.
-    if (prefsRegex) {
+    let defaultRegex = false;
+    if (!prefsRegex) {
+        radioRegex.dataset.searchInputValue = "";
+        window.showHideError(warningInvalidRegex, "No regex specified in plugin preferences");
+    } else {
+        const resultsRegex = window.validateRegex(prefsRegex);
+        if (!resultsRegex.isValid) {
+            radioRegex.dataset.searchInputValue = "";
+            window.showHideError(warningInvalidRegex, "Preferences error: check regex setting");
+        } else {
+            const match = fileNameSansExt.match(resultsRegex.regex);
+            const matchText = match ? match[0] : "";
+            radioRegex.dataset.searchInputValue = matchText;
+            if (!matchText) {
+                window.showHideError(warningInvalidRegex, "Regex did not match");
+            } else {
+                window.showHideError(warningInvalidRegex, "");
+                defaultRegex = true;
+            }
+        }
+    }
+    if (defaultRegex) {
         radioFileName.checked = false;
         radioRegex.checked = true;
-        // const resultsRegex = window.validateRegex(prefsRegex);
-        // if (resultsRegex.isValid) {
-        //     radioRegex.dataset.searchInputValue = fileNameSansExt.match(resultsRegex.regex);
-        // } else {
-        //     radioRegex.dataset.searchInputValue = "";
-        //     errors.push(resultsRegex.error);
-        // }
     } else {
         radioRegex.checked = false;
         radioFileName.checked = true;
-        radioRegex.dataset.searchInputValue = "";
     }
+    showHideRegexWarning();
 
     // Submit button.
     const resultsUrl = window.validateUrl(prefsUrl);
-    if (resultsUrl.isValid) {
+    if (!resultsUrl.isValid) {
+        openBrowserButton.dataset.invalidUrl = "true";
+        window.showHideError(errorInvalidUrl, "Preferences error: check URL setting");
+    } else {
         openBrowserButton.dataset.invalidUrl = "false";
         window.showHideError(errorInvalidUrl, "");
         openBrowserButton.value = `Open ${resultsUrl.url.hostname}`;
-    } else {
-        openBrowserButton.dataset.invalidUrl = "true";
-        window.showHideError(errorInvalidUrl, "Preferences error: check URL setting");
     }
 
     enableDisableButton();
