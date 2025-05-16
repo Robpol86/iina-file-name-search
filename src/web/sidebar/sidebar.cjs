@@ -32,6 +32,17 @@ searchInput.addEventListener("input", enableDisableButton); // Enable/disable wh
 enableDisableButton(); // Enable/disable on load.
 
 /**
+ * Show/hide regex warnings.
+ */
+function showHideRegexWarning() {
+    if (radioRegex.checked) warningInvalidRegexContainer.classList.remove("hidden");
+    else warningInvalidRegexContainer.classList.add("hidden");
+}
+radioFileName.addEventListener("change", showHideRegexWarning);
+radioRegex.addEventListener("change", showHideRegexWarning);
+showHideRegexWarning();
+
+/**
  * Replace searchInput text with default value when user selects a radio button.
  *
  * User can use this to reset any changes they made to the searchInput field.
@@ -47,17 +58,6 @@ radioFileName.addEventListener("change", fillSearchInput);
 radioRegex.addEventListener("change", fillSearchInput);
 
 /**
- * Show/hide regex warnings.
- *
- * @param {Event} event - Event information.
- */
-function showHideRegexWarning(event) {
-    if (event.target.checked) warningInvalidRegexContainer.classList.add("hidden");
-    else warningInvalidRegexContainer.classList.remove("hidden");
-}
-radioRegex.addEventListener("change", showHideRegexWarning);
-
-/**
  * Tell the plugin to open a web browser with the search input value.
  */
 openBrowserForm.addEventListener("submit", (event) => {
@@ -65,7 +65,9 @@ openBrowserForm.addEventListener("submit", (event) => {
     if (!openBrowserButton.disabled) iina.postMessage("open-browser", { search: searchInput.value });
 });
 
-// Receive file-loaded message from plugin.
+/**
+ * Receive file-loaded message from plugin.
+ */
 window.onMessageAck("file-loaded", (message) => {
     const { fileNameSansExt, prefsRegex, prefsUrl } = message;
 
