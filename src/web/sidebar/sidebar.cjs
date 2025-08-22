@@ -70,7 +70,7 @@ openBrowserForm.addEventListener("submit", (event) => {
  * Tell the plugin to open a Finder selecting the currently playing file.
  */
 openFinderButton.addEventListener("click", () => {
-    iina.postMessage("open-finder", { search: searchInput.value });
+    iina.postMessage("open-finder");
 });
 
 /**

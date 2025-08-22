@@ -17,6 +17,16 @@ function openBrowser(message) {
 }
 
 /**
+ * Open Finder.
+ */
+function openFinder() {
+    iina.console.log(`openFinder()`);
+
+    // TODO get current file URL; const prefsUrl = iina.preferences.get("url");
+    // iina.utils.open(prefsUrl.replace("%s", message.search));
+}
+
+/**
  * Event handler for iina.window-loaded.
  */
 function onWindowLoaded() {
@@ -24,6 +34,7 @@ function onWindowLoaded() {
     // Initialize the sidebar.
     iina.sidebar.loadFile("src/web/sidebar/sidebar.html");
     iina.sidebar.onMessage("open-browser", openBrowser);
+    iina.sidebar.onMessage("open-finder", openFinder);
 }
 
 /**
