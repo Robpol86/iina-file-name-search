@@ -23,7 +23,11 @@ function openFinder() {
     iina.console.log(`openFinder()`);
 
     // TODO get current file URL; const prefsUrl = iina.preferences.get("url");
-    // iina.utils.open(prefsUrl.replace("%s", message.search));
+    currentFile = iina.core.status.url;
+    iina.console.log(`currentFile == ${currentFile}`);
+    mockFile = "/Users/robpol86/Downloads/test.mkv";
+    iina.console.log(`mockFile == ${mockFile}`);
+    iina.file.showInFinder(mockFile);
 }
 
 /**
