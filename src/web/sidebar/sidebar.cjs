@@ -11,6 +11,7 @@ const searchInput = document.getElementById("searchInput");
 const errorInvalidUrl = document.getElementById("errorInvalidUrl");
 const errorInvalidInput = document.getElementById("errorInvalidInput");
 const openBrowserButton = document.getElementById("openBrowserButton");
+const openFinderButton = document.getElementById("openFinderButton");
 
 /**
  * Enable or disable the Open Browser button.
@@ -63,6 +64,13 @@ radioRegex.addEventListener("change", fillSearchInput);
 openBrowserForm.addEventListener("submit", (event) => {
     event.preventDefault(); // Don't clear the form.
     if (!openBrowserButton.disabled) iina.postMessage("open-browser", { search: searchInput.value });
+});
+
+/**
+ * Tell the plugin to open a Finder selecting the currently playing file.
+ */
+openFinderButton.addEventListener("click", () => {
+    iina.postMessage("open-finder", { search: searchInput.value });
 });
 
 /**
