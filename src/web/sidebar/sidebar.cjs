@@ -78,6 +78,20 @@ radioRegex.addEventListener("change", showHideAutoOpen);
 showHideAutoOpen();
 
 /**
+ * When user checks on auto open checkbox, the other shall be unchecked automatically.
+ *
+ * @param {Event} event - Event information.
+ */
+function uncheckOtherAutoOpen(event) {
+    const radio = event.target;
+    if (!radio.checked) return;
+    if (radio === autoOpenRegex) autoOpenFileName.checked = false;
+    else autoOpenRegex.checked = false;
+}
+autoOpenFileName.addEventListener("change", uncheckOtherAutoOpen);
+autoOpenRegex.addEventListener("change", uncheckOtherAutoOpen);
+
+/**
  * Tell the plugin to open a web browser with the search input value.
  */
 openBrowserForm.addEventListener("submit", (event) => {
