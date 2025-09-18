@@ -11,7 +11,7 @@ const searchInput = document.getElementById("searchInput");
 const errorInvalidUrl = document.getElementById("errorInvalidUrl");
 const errorInvalidInput = document.getElementById("errorInvalidInput");
 const openBrowserButton = document.getElementById("openBrowserButton");
-const autoOpenOriginal = document.getElementById("autoOpenOriginal");
+const autoOpenFileName = document.getElementById("autoOpenFileName");
 const autoOpenRegex = document.getElementById("autoOpenRegex");
 
 /**
@@ -67,10 +67,10 @@ radioRegex.addEventListener("change", fillSearchInput);
 function showHideAutoOpen() {
     if (radioRegex.checked) {
         autoOpenRegex.closest("label").classList.remove("hidden");
-        autoOpenOriginal.closest("label").classList.add("hidden");
+        autoOpenFileName.closest("label").classList.add("hidden");
     } else {
         autoOpenRegex.closest("label").classList.add("hidden");
-        autoOpenOriginal.closest("label").classList.remove("hidden");
+        autoOpenFileName.closest("label").classList.remove("hidden");
     }
 }
 radioFileName.addEventListener("change", showHideAutoOpen);
