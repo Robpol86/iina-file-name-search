@@ -11,8 +11,7 @@ const searchInput = document.getElementById("searchInput");
 const errorInvalidUrl = document.getElementById("errorInvalidUrl");
 const errorInvalidInput = document.getElementById("errorInvalidInput");
 const openBrowserButton = document.getElementById("openBrowserButton");
-const autoOpenFileName = document.getElementById("autoOpenFileName");
-const autoOpenRegex = document.getElementById("autoOpenRegex");
+const autoOpen = document.getElementById("autoOpen");
 
 /**
  * Enable or disable the Open Browser button.
@@ -58,38 +57,6 @@ function fillSearchInput(event) {
 }
 radioFileName.addEventListener("change", fillSearchInput);
 radioRegex.addEventListener("change", fillSearchInput);
-
-/**
-
-/**
- * Show/hide the auto open checkboxes based on which radio button is selected.
- */
-function showHideAutoOpen() {
-    if (radioRegex.checked) {
-        autoOpenRegex.closest("label").classList.remove("hidden");
-        autoOpenFileName.closest("label").classList.add("hidden");
-    } else {
-        autoOpenRegex.closest("label").classList.add("hidden");
-        autoOpenFileName.closest("label").classList.remove("hidden");
-    }
-}
-radioFileName.addEventListener("change", showHideAutoOpen);
-radioRegex.addEventListener("change", showHideAutoOpen);
-showHideAutoOpen();
-
-/**
- * When user checks on auto open checkbox, the other shall be unchecked automatically.
- *
- * @param {Event} event - Event information.
- */
-function uncheckOtherAutoOpen(event) {
-    const radio = event.target;
-    if (!radio.checked) return;
-    if (radio === autoOpenRegex) autoOpenFileName.checked = false;
-    else autoOpenRegex.checked = false;
-}
-autoOpenFileName.addEventListener("change", uncheckOtherAutoOpen);
-autoOpenRegex.addEventListener("change", uncheckOtherAutoOpen);
 
 /**
  * Tell the plugin to open a web browser with the search input value.
