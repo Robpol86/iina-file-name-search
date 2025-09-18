@@ -17,3 +17,10 @@
     justify-content: center;
     gap: 1.5em;
 }
+
+.submit-group {
+    width: 100%;
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+}
