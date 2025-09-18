@@ -47,7 +47,27 @@
                 <input id="openBrowserButton" type="submit" value="Open Browser" />
             </div>
         </div>
+        <div class="pref-section">
+            <div style="margin-top: 2px" class="auto-toggle">
+                <label class="hidden">
+                    <input id="autoOpenOriginal" type="checkbox" />
+                    Auto open original
+                </label>
+                <label class="hidden">
+                    <input id="autoOpenRegex" type="checkbox" />
+                    Auto open regex
+                </label>
+            </div>
+        </div>
     </form>
 </body>
 
 </html>
+
+<!--
+TODO:
+    * Toggling radio buttons hides/unhides checkboxes
+    * When one checkbox is checked, the other shall be cleared
+    * Send new state of both checkboxes to server
+    * onOpen server will update both checkboxes, THEN open the browser
+-->
