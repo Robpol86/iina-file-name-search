@@ -62,7 +62,7 @@ radioRegex.addEventListener("change", fillSearchInput);
 /**
 
 /**
- * TODO
+ * Show/hide the auto open checkboxes based on which radio button is selected.
  */
 function showHideAutoOpen() {
     if (radioRegex.checked) {
