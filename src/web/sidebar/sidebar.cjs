@@ -11,6 +11,8 @@ const searchInput = document.getElementById("searchInput");
 const errorInvalidUrl = document.getElementById("errorInvalidUrl");
 const errorInvalidInput = document.getElementById("errorInvalidInput");
 const openBrowserButton = document.getElementById("openBrowserButton");
+const autoOpenOriginal = document.getElementById("autoOpenOriginal");
+const autoOpenRegex = document.getElementById("autoOpenRegex");
 
 /**
  * Enable or disable the Open Browser button.
