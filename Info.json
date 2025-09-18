@@ -3,7 +3,7 @@
   "description": "Search file names on the internet",
   "entry": "src/entry.cjs",
   "ghRepo": "Robpol86/iina-file-name-search",
-  "ghVersion": 2,
+  "ghVersion": 3,
   "identifier": "com.robpol86.iina-file-name-search",
   "name": "File Name Search",
   "permissions": [],
@@ -15,5 +15,5 @@
   },
   "preferencesPage": "src/web/preferences/preferences.html",
   "sidebarTab": { "name": "File Name Search" },
-  "version": "1.0.0"
+  "version": "1.1.0"
 }
