@@ -18,8 +18,9 @@
     gap: 1.5em;
 }
 
-.submit-button {
+.submit-group {
     width: 100%;
     display: flex;
-    justify-content: right;
+    justify-content: space-between;
+    align-items: center;
 }

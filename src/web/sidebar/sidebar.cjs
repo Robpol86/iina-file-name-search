@@ -11,6 +11,7 @@ const searchInput = document.getElementById("searchInput");
 const errorInvalidUrl = document.getElementById("errorInvalidUrl");
 const errorInvalidInput = document.getElementById("errorInvalidInput");
 const openBrowserButton = document.getElementById("openBrowserButton");
+const checkAutoOpen = document.getElementById("checkAutoOpen");
 
 /**
  * Enable or disable the Open Browser button.
@@ -30,6 +31,14 @@ function enableDisableButton() {
 }
 searchInput.addEventListener("input", enableDisableButton); // Enable/disable when typing.
 enableDisableButton(); // Enable/disable on load.
+
+/**
+ * Auto open browser if the button is enabled (passed validation) and user checked the auto checkbox.
+ */
+function autoOpenAutoPost() {
+    if (checkAutoOpen.checked && !openBrowserButton.disabled)
+        iina.postMessage("open-browser", { search: searchInput.value });
+}
 
 /**
  * Show/hide regex warnings.
@@ -121,4 +130,5 @@ window.onMessageAck("file-loaded", (message) => {
 
     showHideRegexWarning();
     enableDisableButton();
+    autoOpenAutoPost();
 });
