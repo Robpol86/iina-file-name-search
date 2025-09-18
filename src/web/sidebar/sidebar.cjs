@@ -60,6 +60,24 @@ radioFileName.addEventListener("change", fillSearchInput);
 radioRegex.addEventListener("change", fillSearchInput);
 
 /**
+
+/**
+ * TODO
+ */
+function showHideAutoOpen() {
+    if (radioRegex.checked) {
+        autoOpenRegex.closest("label").classList.remove("hidden");
+        autoOpenOriginal.closest("label").classList.add("hidden");
+    } else {
+        autoOpenRegex.closest("label").classList.add("hidden");
+        autoOpenOriginal.closest("label").classList.remove("hidden");
+    }
+}
+radioFileName.addEventListener("change", showHideAutoOpen);
+radioRegex.addEventListener("change", showHideAutoOpen);
+showHideAutoOpen();
+
+/**
  * Tell the plugin to open a web browser with the search input value.
  */
 openBrowserForm.addEventListener("submit", (event) => {
@@ -123,4 +141,5 @@ window.onMessageAck("file-loaded", (message) => {
 
     showHideRegexWarning();
     enableDisableButton();
+    // TODO autoOpen
 });
